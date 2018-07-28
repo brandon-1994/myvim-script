@@ -1,5 +1,7 @@
 set runtimepath+=~/.vim_runtime
 
+set number
+
 source ~/.vim_runtime/vimrcs/basic.vim
 source ~/.vim_runtime/vimrcs/filetypes.vim
 source ~/.vim_runtime/vimrcs/plugins_config.vim
@@ -43,6 +45,8 @@ Plugin 'flazz/vim-colorschemes'
 " Color pack to rule them all.
 Plugin 'Chiel92/vim-autoformat'
 "Vim's auto format plugin
+Plugin 'dracula/vim'
+"dracula theme"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,3 +62,16 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+"
+call plug#begin()
+
+"Starts auto sync for writen plugins
+if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+"Ends auto sync for writen plugins
+
+call plug#end()
